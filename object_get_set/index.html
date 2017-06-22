@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>关于Object的getter和setter</title>
+</head>
+
+<body>
+  <script>
+    var foo = (function () {
+      var o = {
+        a: 1,
+        b: 2,
+        /**更多属性**/
+      };
+      return function (key) {
+        return o[key];
+      }
+    })()
+    Object.defineProperty(Object.prototype, 'self', {
+      get() {
+        return this;
+      }
+    });
+
+    var o = foo('self');
+    console.log(Object.keys(o));
+  </script>
+</body>
+
+</html>
